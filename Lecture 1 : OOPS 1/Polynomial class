@@ -285,3 +285,233 @@ public class Polynomial
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+Solution 2..)
+
+
+
+public class Polynomial {
+private int data[];
+    private int nextIndex;
+   
+    public Polynomial() {
+        data = new int[5];
+    }
+
+public void setCoefficient(int degree, int coeff){
+if(degree <= nextIndex) {
+            data[degree] = coeff;
+        }
+        else {
+            add(degree, coeff);
+        }
+
+}
+    public int getCoeff(int index) {
+        if(index <= nextIndex) {
+            return data[index];
+        }
+        else {
+            return 0;
+        }
+    }
+    public void add(int degree,  int coeff) {
+        if(degree >= data.length) {
+            reconstruct();
+            add(degree,coeff);
+        }
+        data[degree] = coeff;
+        nextIndex = degree;
+    }
+     public void reconstruct() {
+        int temp[] = data;
+        data = new int[data.length * 2];
+        for(int i = 0; i < temp.length; i++) {
+            data[i] = temp[i];
+        }
+    }
+    public int size() {
+        return nextIndex;
+    }
+
+// Prints all the terms(only terms with non zero coefficients are to be printed) in increasing order of degree.
+public void print(){
+int size = size();
+        for(int i = 0 ; i <= size; i++) {
+            if(getCoeff(i) != 0) {
+                System.out.print(getCoeff(i)+"x"+i + " ");
+            }
+        }
+        System.out.println();
+}
+
+
+// Adds two polynomials and returns a new polynomial which has result
+public Polynomial add(Polynomial p){
+Polynomial p1 = new Polynomial();
+        int size = Math.max(size(), p.size());
+        for(int i = 0; i <= size; i++) {
+            if(this.getCoeff(i) != 0 || p.getCoeff(i) != 0) {
+                int coeff = this.getCoeff(i) + p.getCoeff(i);
+                p1.setCoefficient(i,coeff);
+            }
+        }
+        return p1;
+
+}
+   
+
+// Subtracts two polynomials and returns a new polynomial which has result
+public Polynomial subtract(Polynomial p){
+Polynomial p1 = new Polynomial();
+        int size = Math.max(size(),p.size());
+        for(int i = 0; i <= size; i++) {
+            if(this.getCoeff(i) != 0 || p.getCoeff(i) != 0) {
+                int coeff = this.getCoeff(i) - p.getCoeff(i);
+                p1.setCoefficient(i,coeff);
+            }
+        }
+        return p1;
+}
+
+// Multiply two polynomials and returns a new polynomial which has result
+public Polynomial multiply(Polynomial p){
+        Polynomial temp = new Polynomial();
+int p1size = this.size();
+        int p2size = p.size();
+        for(int i = 0; i <= p1size; i++) {
+            for(int j = 0; j <= p2size; j++) {
+                int coeff = this.getCoeff(i) * p.getCoeff(j);
+               int degree = i + j;
+                coeff = coeff + temp.getCoeff(degree);
+                temp.setCoefficient(degree , coeff);
+            }
+        }
+        return temp;
+}
+
+}
+
+
+
+
+
+Solution 3....)
+
+
+
+public class Polynomial {
+
+	private int[] coeff;
+	private int degree;
+
+	public Polynomial() {
+		coeff=new int[5];
+		degree=-1;
+	}
+	public void setCoefficient(int degree,int coefficient) {
+		if(degree >=coeff.length) {
+			restructure(degree);
+		}
+		coeff[degree]=coefficient;
+		if(degree >= this.degree) {
+			this.degree=degree;
+		}
+	}
+	public Polynomial add(Polynomial p) {
+
+		Polynomial x=new Polynomial();
+
+		int i=0,j=0,k=0;
+		while(i < p.coeff.length && j < this.coeff.length) {
+			x.setCoefficient(k, p.coeff[i] + this.coeff[i]);
+			i++;
+			j++;
+			k++;
+		}
+		while(i<p.coeff.length) {
+			x.setCoefficient(k, p.coeff[i]);
+			k++;
+			i++;
+		}
+		while(j<this.coeff.length) {
+			x.setCoefficient(k, this.coeff[j]);
+			k++;
+			j++;
+		}
+
+
+		return x;
+
+	}
+	public Polynomial subtract(Polynomial p) {
+
+		Polynomial x=new Polynomial();
+
+		int i=0,j=0,k=0;
+		while(i < p.coeff.length && j < this.coeff.length) {
+			x.setCoefficient(k,  this.coeff[i] - p.coeff[i] );
+			i++;
+			j++;
+			k++;
+		}
+		while(i<p.coeff.length) {
+			x.setCoefficient(k, -p.coeff[i]);
+			k++;
+			i++;
+		}
+		while(j<this.coeff.length) {
+			x.setCoefficient(k, this.coeff[j]);
+			k++;
+			j++;
+		}
+
+
+		return x;
+
+	}
+	public Polynomial multiply(Polynomial p) {
+
+		Polynomial x=new Polynomial();
+
+		for(int i=0;i<p.coeff.length;i++) {
+			for(int j=0;j<this.coeff.length;j++) {
+				if(i + j <=x.degree)
+					x.setCoefficient( i + j ,x.coeff[i+j]+p.coeff[i] * this.coeff[j]);
+				else
+					x.setCoefficient(i + j ,p.coeff[i] * this.coeff[j]);
+			}
+		}
+		return x;
+
+	}
+	public void print() {
+		for(int i=0;i<coeff.length;i++) {
+			if(coeff[i] !=0)
+				System.out.print( coeff[i]  +"x"+ i +" ");
+		}
+	}
+	private void restructure(int degree) {
+
+		int[] temp=coeff;
+		coeff=new int[degree + 1];
+		for(int i=0;i<temp.length;i++) {
+			coeff[i]=temp[i];
+		}
+	}
+
+
+
+
+}
+
