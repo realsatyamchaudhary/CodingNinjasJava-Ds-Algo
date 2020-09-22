@@ -32,76 +32,83 @@ cf
 
 Solution....)
 
-import java.util.*;
 public class solution {
 
 	// Return a string array that contains all the possible strings
 	public static String[] keypad(int n){
-		// Write your code here
-        if(n==0 || n==1)
-        {
-            String tot[]={""};
-            return tot;
+		
+        if(n == 0) {
+            String[] ans = {""};
+            return ans;
         }
-        char[] arr=helper(n%10);
-        String[] temp=keypad(n/10);
-        String[] tot=new String[arr.length*temp.length];
-        int k=0;
-        for(int i=0;i<arr.length;i++)
-        {
-            for(int j=0;j<temp.length;j++)
-            {
-                tot[k]=temp[j]+arr[i];
+        
+        String remainDigit[] = keypad(n/10);
+        String lastDigit[] = numberword(n % 10);
+        String myAns[] = new String[remainDigit.length * lastDigit.length];
+        int k = 0;
+        
+        for(int i = 0; i < remainDigit.length; i++) {
+            for(int j = 0; j < lastDigit.length; j++) {
+                
+                myAns[k] = remainDigit[i] + lastDigit[j];
                 k++;
             }
         }
-        return tot;
-    }
-    public static char[] helper(int n)
-    {
-        if(n==2)
-        {
-            char ar[]={'a','b','c'};
-            return ar;
-        }
-        if(n==3)
-        {
-            char ar[]={'d','e','f'};
-            return ar;
-        }
-        if(n==4)
-        {
-            char ar[]={'g','h','i'};
-            return ar;
-        }
-        if(n==5)
-        {
-            char ar[]={'j','k','l'};
-            return ar;
-        }
-        if(n==6)
-        {
-            char ar[]={'m','n','o'};
-            return ar;
-        }
-        if(n==7)
-        {
-            char ar[]={'p','q','r','s'};
-            return ar;
-        }
-        if(n==8)
-        {
-            char ar[]={'t','u','v'};
-            return ar;
-        }
-        if(n==9)
-        {
-            char ar[]={'w','x','y','z'};
-            return ar;
-        }
-        char ar[]={' '};
-            return ar;
-    }
+        
+        
+        return myAns;
+        
+
+	}
     
+    
+    public static String[] numberword(int n) {
+        
+        if(n <= 1 || n > 9) {
+            String[] empty = {""};
+            return empty;
+        }
+        
+        else if(n == 2) {
+            String[] output = {"a" , "b", "c"};
+            return output;
+        }
+        else if(n == 3) {
+            String[] output = {"d" , "e" , "f"};
+            return output;
+        }
+        else if(n == 4) {
+            String[] output = {"g", "h", "i"};
+            return output;
+        }
+        else if(n == 5) {
+            String[] output = {"j", "k", "l"};
+            return output;
+        }
+        else if(n == 6) {
+            String[] output = {"m", "n" , "o"};
+            return output;
+        }
+        else if(n == 7) {
+            String[] output = {"p", "q", "r", "s"};
+            return output;
+        }
+        else if(n == 8) {
+            String[] output = { "t", "u", "v"};
+            return output;
+        }
+        else {
+            String[] output = {"w", "x", "y", "z"};
+            return output;
+        }
+        
+        
+    }
 	
 }
+
+
+
+
+
+
