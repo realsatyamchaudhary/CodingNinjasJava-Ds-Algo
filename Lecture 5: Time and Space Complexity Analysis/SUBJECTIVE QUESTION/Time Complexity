@@ -1,0 +1,13 @@
+##Time Complexity....
+Question...)
+
+If the number of primary operations of an algorithm that takes an array of size n as input are 3n^2 + 5n.
+The worst case time complexity of the algorithm will be ?
+
+Solution...)
+
+Options
+O(n^3)
+O((n^2)*logn)
+O(n^2)        ANSWER
+O(n)
