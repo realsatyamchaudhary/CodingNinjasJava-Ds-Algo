@@ -1,0 +1,10 @@
+##Linear Search Worst Case
+Question..
+The Worst case(s) occur in linear search algorithm when - 
+
+Solution..)
+
+Item is somewhere in the middle of the array
+Item is the last element in the array                  ANSWER
+Item is present at first index of the array.
+Item is not in the array at all                       ANSWER
