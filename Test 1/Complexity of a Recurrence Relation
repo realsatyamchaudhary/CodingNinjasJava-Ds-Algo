@@ -1,0 +1,18 @@
+##Complexity of a Recurrence Relation....
+
+Question...)
+
+Which one of the following correctly determines the solution of the recurrence relation with T(1) = 1?
+T(n) = 2T(n/2) + Logn
+
+
+
+solution....)
+
+
+Options
+O(N)            SOLUTION
+O(NlogN)
+O(N^2)
+O(log N)
+
