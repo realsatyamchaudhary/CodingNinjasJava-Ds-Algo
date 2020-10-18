@@ -1,6 +1,7 @@
 ##Check redundant brackets...
 
-For a given expression in the form of a string, find if there exist any redundant brackets or not. It is given that the expression contains only rounded brackets or parenthesis and the input expression will always be balanced.
+For a given expression in the form of a string, find if there exist any redundant brackets or not. 
+It is given that the expression contains only rounded brackets or parenthesis and the input expression will always be balanced.
 A pair of the bracket is said to be redundant when a sub-expression is surrounded by unnecessary or needless brackets.
 Example:
 Expression: (a+b)+c
@@ -13,7 +14,8 @@ You will not get a partial score for this problem. You will get marks only if al
 Input Format :
 The first and the only line of input contains a string expression, without any spaces in between.
 Output Format :
-The first and the only line of output will print either 'true' or 'false'(without the quotes) denoting whether the input expression contains redundant brackets or not.
+The first and the only line of output will print either 'true' or 'false'(without the quotes) denoting whether the input 
+expression contains redundant brackets or not.
 Note:
 You are not required to print the expected result. It has already been taken care of.
 Constraints:
