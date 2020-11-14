@@ -1,0 +1,106 @@
+##Code: BST to Sorted LL...
+
+Given a BST, convert it into a sorted linked list. You have to return the head of LL.
+Input format:
+The first and only line of input contains data of the nodes of the tree in level order form.
+The data of the nodes of the tree is separated by space. If any node does not have left or right child, 
+take -1 in its place. Since -1 is used as an indication whether the left or right nodes exist, therefore,
+it will not be a part of the data of any node.   
+Output Format:
+The first and only line of output prints the elements of sorted linked list.
+Constraints:
+Time Limit: 1 second
+Sample Input 1:
+8 5 10 2 6 -1 -1 -1 -1 -1 7 -1 -1
+Sample Output 1:
+2 5 6 7 8 10
+
+
+
+Solution....)
+
+
+class Pairofnode{
+    LinkedListNode<Integer> head;
+     LinkedListNode<Integer> tail;
+    
+}
+    public class Solution {
+
+/*	Binary Tree Node class 
+ * 
+ * 	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+
+/* LinkedList Node Class
+*
+*	
+class LinkedListNode<T> {
+	T data;
+	LinkedListNode<T> next;
+	
+	public LinkedListNode(T data) {
+		this.data = data;
+	}
+}
+*/
+
+	public static LinkedListNode<Integer> constructLinkedList(BinaryTreeNode<Integer> root){
+		return helper(root).head;
+		
+	}
+        public static Pairofnode helper(BinaryTreeNode<Integer> root){
+            if(root==null){
+             Pairofnode pair=new Pairofnode();
+                pair.head=null;
+                pair.tail=null;
+                return pair;
+            }
+             LinkedListNode<Integer> nn=new  LinkedListNode<Integer>(root.data);
+     
+             Pairofnode lefttree=helper(root.left);
+             Pairofnode righttree=helper(root.right);
+           Pairofnode pair=new Pairofnode();
+            if(lefttree.head!=null){
+                pair.head=lefttree.head;
+                pair.tail=lefttree.tail;
+                pair.tail.next=nn;
+                pair.tail=nn;
+                if(righttree.head==null){
+                    return pair;
+                }
+            }
+            if(righttree.head!=null && lefttree.head!=null){
+                pair.tail.next=righttree.head;
+                pair.tail=righttree.tail;
+                return pair;
+            }
+            if(righttree.head!=null && lefttree.head==null){
+                pair.head=nn;
+                nn.next=righttree.head;
+                pair.tail=righttree.tail;
+                return pair;
+            }
+        else{
+            pair.head=nn;
+            pair.tail=nn;
+        }
+        return pair;
+        
+        
+        
+        
+        
+        
+        
+        
+        }
+}	
