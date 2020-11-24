@@ -1,0 +1,88 @@
+##Largest BST
+
+Question...)
+
+
+Given a Binary tree, find the largest BST subtree. That is, you need to find the BST with maximum height in the given binary tree.
+You have to return the height of largest BST.
+Input format :
+The first line of input contains data of the nodes of the tree in level order form. The data of the nodes of the tree is separated by space.
+If any node does not have left or right child, take -1 in its place. Since -1 is used as an indication whether the left or right nodes exist, therefore, it will not be a part of the data of any node.
+Output format:
+The first and only line of output contains the height of the largest BST.
+Constraints:
+Time Limit: 1 second
+Sample Input 1:
+5 10 6 2 3 -1 -1 -1 -1 -1 9 -1 -1
+Sample Output 1:
+2
+
+
+Solution...)
+
+
+import java.util.*;
+class bst{
+    int min;
+    int max;
+    int height;
+    boolean isBst;
+}
+
+public class Solution {
+
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+		// Write your code here
+        return check(root).height;
+		
+	}
+    
+    public static bst check(BinaryTreeNode<Integer> root)
+    {
+        if(root == null){
+            // we create a wrapper oject and assign all the initial values in it.
+            // in your case bst is Wrapper class
+            bst ans = new bst();
+            ans.max = Integer.MIN_VALUE;
+            ans.min = Integer.MAX_VALUE;
+            ans.isBst = true;
+            ans.height = 0;
+            // now return ans  this will return all the above values if the 
+            return ans;
+            
+        }
+        
+        bst left = check(root.left);
+        bst right = check(root.right);
+        
+        if(!( right.min > root.data ))
+            right.isBst = false;
+        if(!( left.max < root.data))
+            left.isBst = false;
+        //what is left is not a bst or right is not a bst and the root's data is less than the left max value also greater than right min value 
+        if(!left.isBst || !right.isBst || root.data < left.max && root.data > right.min){
+            // then we check the height of left > height of right  if yes then its not a bst 
+            if(left.height > right.height){
+                left.isBst = false;
+                return left;
+            }
+            else{
+                right.isBst = false;
+                 return right;
+            }
+        }
+        
+        bst ans = new bst();
+        //suppose the Bst is true
+        ans.isBst = true;
+        //Then we find the min for left , root , and right.
+        ans.min = Math.min(left.min,Math.min(right.min,root.data));
+        //Then we find the max for left , root , and right.
+        ans.max = Math.max(left.max,Math.max(right.max,root.data));
+        //now find who has the maximum height in the tree eigther left or right
+        ans.height = Math.max(left.height,right.height) + 1;
+        return ans;
+    }
+
+
+}
