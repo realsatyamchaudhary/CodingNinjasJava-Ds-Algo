@@ -72,3 +72,69 @@ public class Solution {
     }
 
 }
+
+
+
+Solution 2///)
+
+
+public class Solution {  
+2
+​
+3
+    private static void swapElements(int[] arr, int start, int end) {
+4
+        int temp = arr[start];
+5
+        arr[start] = arr[end];
+6
+        arr[end] = temp;
+7
+    }
+8
+​
+9
+​
+10
+    private static void reverse(int[] arr, int start, int end){
+11
+        while(start < end) {
+12
+            swapElements(arr, start, end);
+13
+            start += 1;
+14
+            end -= 1;
+15
+        }
+16
+    }
+17
+​
+18
+    public static void rotate(int[] arr, int d) {
+19
+        if (arr.length == 0) {
+20
+            return;
+21
+        }
+         
+23
+        if (d >= arr.length && arr.length != 0) {
+24
+            d %= arr.length;
+25
+        }
+26
+​
+27
+        reverse(arr, 0, arr.length - 1);
+28
+        reverse(arr, 0, arr.length - d - 1);
+29
+        reverse(arr, arr.length - d, arr.length - 1);
+30
+    }
+31
+}
