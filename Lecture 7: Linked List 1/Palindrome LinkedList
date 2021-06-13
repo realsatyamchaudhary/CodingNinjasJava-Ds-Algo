@@ -92,16 +92,6 @@ public class Solution {
     
     public static LinkedListNode<Integer> reverse_I(LinkedListNode<Integer> head) {
 
-// 		LinkedListNode<Integer> current = head;
-// 		LinkedListNode<Integer> previous = null;
-
-// 		while(current != null){
-// 			LinkedListNode<Integer> next = current.next;
-// 			current.next = previous;
-// 			previous = current;
-// 			current = next;
-// 		}
-// 		return previous;
         if(head == null){
             return head;
         }
