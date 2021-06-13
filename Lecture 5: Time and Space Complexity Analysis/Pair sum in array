@@ -74,3 +74,141 @@ public class PairSum{
 
 	}
 }
+ 
+ 
+ 
+ 
+ Solution 2...)
+ 
+ 
+ /* 
+2
+    Time Complexity : O(n * log(n))
+3
+    Space Complexity : O(1)
+4
+​
+5
+    A more optimized solution to this problem is possible
+6
+        using HashMaps. Which will take:
+7
+        Time Complexity: O(n)
+8
+        Space Complexity : O(n)
+9
+    Where 'n' is the size of the Array/List
+10
+*/
+11
+​
+12
+import java.util.Arrays;
+13
+​
+14
+public class Solution { 
+15
+​
+16
+    public static int pairSum(int[] arr, int num) {
+17
+        Arrays.sort(arr);
+18
+​
+19
+        int startIndex = 0;
+20
+        int endIndex = (arr.length - 1);
+	  int numPair = 0;
+23
+​
+24
+        while(startIndex < endIndex) {
+25
+​
+26
+            if(arr[startIndex] + arr[endIndex] < num) {
+27
+                startIndex++;
+28
+            }
+29
+            else if (arr[startIndex] + arr[endIndex] > num) {
+30
+                endIndex--;
+31
+            } else {
+32
+                
+33
+                int elementAtStart = arr[startIndex];
+34
+                int elementAtEnd = arr[endIndex];
+35
+                
+36
+                if (elementAtStart == elementAtEnd) {
+		 int totalElementsFromStartToEnd = (endIndex - startIndex) + 1;
+38
+                    numPair += (totalElementsFromStartToEnd * (totalElementsFromStartToEnd - 1) / 2);
+39
+                    
+40
+                    return numPair;
+41
+                }
+42
+                
+43
+                int tempStartIndex = startIndex + 1;
+44
+                int tempEndIndex = endIndex - 1;
+45
+​
+46
+                while (tempStartIndex <= tempEndIndex && arr[tempStartIndex] == elementAtStart) {
+47
+                    tempStartIndex += 1;
+48
+                }
+49
+                
+50
+                while(tempEndIndex >= tempStartIndex && arr[tempEndIndex] == elementAtEnd) {
+51
+                    tempEndIndex -= 1;
+52
+                }
+		
+54
+                int totalElementsFromStart = (tempStartIndex - startIndex);
+55
+                int totalElementsFromEnd = (endIndex - tempEndIndex);
+56
+                
+57
+                numPair += (totalElementsFromStart * totalElementsFromEnd);
+58
+​
+59
+​
+60
+                startIndex = tempStartIndex;
+61
+                endIndex = tempEndIndex;
+62
+​
+63
+            }
+64
+        }
+65
+​
+66
+        return numPair;
+67
+    }
+68
+}
+
